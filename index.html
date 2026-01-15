@@ -3,103 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Мир Таро — онлайн-сервис (Telegram-бот)</title>
-  <meta name="description" content="Мир Таро — онлайн-сервис в формате Telegram-бота: безлимитное общение с ботом по Таро в рамках премиум-подписки. Тарифы, контакты, реквизиты и условия." />
+  <title>Мир Таро — расшифровка раскладов и значения карт (Telegram-бот)</title>
+  <meta name="description" content="Мир Таро — Telegram-бот для расшифровки раскладов и значений карт Таро. Премиум: безлимитное общение с ботом. Тарифы, условия, документы, контакты и реквизиты." />
   <style>
-    :root { --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --link:#2563eb; --card:#f9fafb; }
-    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 18px 64px; }
-    header { padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
-    h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
-    .sub { margin: 0; color: var(--muted); }
-    h2 { font-size: 20px; margin: 22px 0 10px; }
-    p { margin: 10px 0; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; } }
-    ul { margin: 8px 0 12px 18px; }
-    li { margin: 6px 0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    th, td { border: 1px solid var(--border); padding: 10px; text-align: left; vertical-align: top; }
-    th { background: #f3f4f6; }
-    .muted { color: var(--muted); }
-    .btnrow { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn {
-      display: inline-block; padding: 10px 14px; border-radius: 10px;
-      border: 1px solid var(--border); background: #fff;
-      font-weight: 600;
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --link:#2563eb;
+      --card:#f9fafb; --accent:#eef2ff; --accentBorder:#c7d2fe;
     }
-    .btn.primary { border-color: #c7d2fe; background: #eef2ff; }
-    footer { margin-top: 26px; color: var(--muted); font-size: 14px; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px;}
+    header{padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:18px;}
+    h1{font-size:34px;line-height:1.15;margin:0 0 10px;}
+    .sub{margin:0;color:var(--muted);max-width:850px;}
+    h2{font-size:22px;margin:26px 0 10px;}
+    h3{font-size:18px;margin:18px 0 8px;}
+    p{margin:10px 0;}
+    a{color:var(--link);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;}
+    @media (min-width:860px){ .grid{grid-template-columns:1.2fr .8fr;} }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
+    .hero{background:linear-gradient(180deg,var(--accent),#fff);border:1px solid var(--accentBorder);border-radius:16px;padding:18px 18px;}
+    .btnrow{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;}
+    .btn{
+      display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);
+      background:#fff;font-weight:700;
+    }
+    .btn.primary{border-color:var(--accentBorder);background:var(--accent);}
+    .pillrow{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--muted);font-size:14px;}
+    ul{margin:8px 0 12px 18px;}
+    li{margin:6px 0;}
+    table{width:100%;border-collapse:collapse;margin-top:8px;}
+    th,td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top;}
+    th{background:#f3f4f6;}
+    .muted{color:var(--muted);}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    .small{font-size:14px;color:var(--muted);}
+    footer{margin-top:28px;color:var(--muted);font-size:14px;}
+    .hr{height:1px;background:var(--border);margin:22px 0;}
   </style>
 </head>
 <body>
   <div class="wrap">
+
     <header>
-      <h1>Мир Таро</h1>
-      <p class="sub">
-        Онлайн-сервис в формате Telegram-бота: безлимитное общение с ботом по вопросам Таро
-        в рамках премиум-подписки.
-      </p>
-      <div class="btnrow">
-        <a class="btn primary" href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">Открыть Telegram-бота</a>
-        <a class="btn" href="offer.html">Публичная оферта</a>
-        <a class="btn" href="privacy.html">Политика конфиденциальности</a>
+      <div class="hero">
+        <h1>Мир Таро — значения карт и расшифровка раскладов</h1>
+        <p class="sub">
+          Telegram-бот помогает быстро понять смысл карт Таро: трактовка отдельных карт,
+          расшифровка раскладов и ответы на вопросы по вашей ситуации.
+          <strong>Премиум — безлимитное общение с ботом</strong> на срок тарифа.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">Открыть Telegram-бота</a>
+          <a class="btn" href="#tariffs">Посмотреть тарифы</a>
+          <a class="btn" href="#docs">Документы</a>
+        </div>
+
+        <div class="pillrow" aria-label="Ключевые преимущества">
+          <span class="pill">🃏 Значения карт</span>
+          <span class="pill">🔮 Расшифровка раскладов</span>
+          <span class="pill">💬 Ответы на вопросы</span>
+          <span class="pill">📷 Анализ фото раскладов (если доступно)</span>
+          <span class="pill">⚡ Быстро и удобно в Telegram</span>
+        </div>
       </div>
     </header>
 
     <section class="grid">
       <div class="card">
-        <h2>Контактные данные</h2>
-        <p>
-          Поддержка (email): <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a><br />
-          Telegram поддержки: <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a><br />
-          Telegram-бот: <a href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">t.me/mirtaro_help_bot</a>
-        </p>
+        <h2>Как это работает</h2>
+        <ol style="margin:8px 0 12px 18px;">
+          <li>Откройте бота в Telegram: <a href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">t.me/mirtaro_help_bot</a></li>
+          <li>Напишите вопрос по Таро или отправьте фото расклада (если функция доступна).</li>
+          <li>Получите расшифровку и рекомендации в удобном формате.</li>
+        </ol>
         <p class="muted">
-          Для обращений по оплате и возвратам используйте электронную почту поддержки.
+          Сервис оказывает <strong>информационно-консультативные услуги</strong> в электронном виде.
+          Подробные условия — в <a href="offer.html">публичной оферте</a>.
         </p>
       </div>
 
       <div class="card">
-        <h2>Реквизиты</h2>
-        <p>
-          Индивидуальный предприниматель Шамсиев Ринат Альбертович<br />
-          ИНН: <span class="mono">590417211206</span><br />
-          ОГРН/ОГРНИП: <span class="mono">320595800057412</span>
+        <h2>Что вы получите</h2>
+        <ul>
+          <li><strong>Понятные трактовки</strong> значений карт и сочетаний.</li>
+          <li><strong>Разбор расклада</strong> по вашему запросу и контексту.</li>
+          <li><strong>Быстрый ответ</strong> без ожидания живого консультанта.</li>
+          <li><strong>Премиум</strong>: безлимитное общение с ботом на срок тарифа.</li>
+        </ul>
+        <p class="small">
+          Важно: ответы носят информационный характер и не являются медицинскими, юридическими или финансовыми консультациями.
         </p>
       </div>
     </section>
 
-    <section class="card" style="margin-top:12px;">
-      <h2>Описание услуг</h2>
-      <p>
-        Сервис «Мир Таро» предоставляет информационно-консультативные услуги
-        в электронном виде через Telegram-бота.
-      </p>
-      <ul>
-        <li>ответы на вопросы и трактовка карт Таро;</li>
-        <li>расшифровка раскладов Таро по текстовым запросам;</li>
-        <li>анализ изображений раскладов Таро (если предусмотрено функционалом бота).</li>
-      </ul>
+    <section id="tariffs" class="card" style="margin-top:12px;">
+      <h2>Тарифы</h2>
       <p class="muted">
-        Премиум-подписка предоставляет безлимитное общение с ботом в рамках срока действия тарифа.
-        Подробные условия оказания услуг указаны в <a href="offer.html">публичной оферте</a>.
+        Вы можете пользоваться ботом бесплатно с ограничениями, либо оформить премиум-подписку.
+        Перед оплатой в боте отображаются актуальные условия.
       </p>
-    </section>
 
-    <section class="card" style="margin-top:12px;">
-      <h2>Стоимость услуг (тарифы)</h2>
-      <table>
+      <table aria-label="Тарифы Мир Таро">
         <thead>
           <tr>
             <th>Тариф</th>
             <th>Срок действия</th>
             <th>Стоимость</th>
-            <th>Описание</th>
+            <th>Что включено</th>
           </tr>
         </thead>
         <tbody>
@@ -117,16 +131,19 @@
           </tr>
         </tbody>
       </table>
-      <p class="muted">
-        Оплата производится в безналичной форме. Актуальные условия и состав тарифа
-        отображаются в Telegram-боте перед оплатой.
+
+      <div class="btnrow" style="margin-top:12px;">
+        <a class="btn primary" href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">Перейти в бот и оформить премиум</a>
+      </div>
+      <p class="small">
+        Оплата производится в безналичной форме. После подтверждения оплаты премиум-доступ активируется автоматически.
       </p>
     </section>
 
     <section class="card" style="margin-top:12px;">
       <h2>Условия предоставления услуг и возврата</h2>
       <ul>
-        <li>Услуга предоставляется в электронном виде — доступ к Telegram-боту.</li>
+        <li>Услуга предоставляется в электронном виде — доступ к Telegram-боту и его функционалу.</li>
         <li>Премиум-доступ активируется автоматически после подтверждения оплаты.</li>
         <li>
           Возврат денежных средств возможен в случаях и порядке, предусмотренных законодательством РФ
@@ -137,22 +154,50 @@
           <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a>
           с указанием даты и суммы платежа.
         </li>
+        <li>Претензионный порядок обязателен. Срок ответа на претензию — до 10 рабочих дней.</li>
       </ul>
     </section>
 
-    <section class="card" style="margin-top:12px;">
+    <section id="docs" class="card" style="margin-top:12px;">
       <h2>Документы</h2>
       <ul>
         <li><a href="offer.html">Публичная оферта</a></li>
         <li><a href="privacy.html">Политика конфиденциальности</a></li>
       </ul>
+      <p class="small">
+        Оплачивая подписку и используя сервис, вы подтверждаете согласие с условиями оферты и политикой обработки персональных данных.
+      </p>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Контакты</h2>
+        <p>
+          Поддержка (email): <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a><br />
+          Telegram поддержки: <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a><br />
+          Telegram-бот: <a href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">t.me/mirtaro_help_bot</a>
+        </p>
+        <p class="small">
+          Для вопросов по оплате/возврату укажите дату и сумму платежа, а также (если есть) идентификатор платежа.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Реквизиты</h2>
+        <p>
+          Индивидуальный предприниматель Шамсиев Ринат Альбертович<br />
+          ИНН: <span class="mono">590417211206</span><br />
+          ОГРН/ОГРНИП: <span class="mono">320595800057412</span>
+        </p>
+      </div>
     </section>
 
     <footer>
-      <p>
-        © «Мир Таро». Информационно-консультативный онлайн-сервис.
-      </p>
+      <p>© «Мир Таро». Информационно-консультативный онлайн-сервис в формате Telegram-бота.</p>
     </footer>
+
   </div>
 </body>
 </html>
