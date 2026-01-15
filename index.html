@@ -1,35 +1,158 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Мир Таро — онлайн сервис</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Мир Таро — онлайн-сервис (Telegram-бот)</title>
+  <meta name="description" content="Мир Таро — онлайн-сервис в формате Telegram-бота: безлимитное общение с ботом по Таро в рамках премиум-подписки. Тарифы, контакты, реквизиты и условия." />
+  <style>
+    :root { --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --link:#2563eb; --card:#f9fafb; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 18px 64px; }
+    header { padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+    h1 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+    .sub { margin: 0; color: var(--muted); }
+    h2 { font-size: 20px; margin: 22px 0 10px; }
+    p { margin: 10px 0; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; } }
+    ul { margin: 8px 0 12px 18px; }
+    li { margin: 6px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid var(--border); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f3f4f6; }
+    .muted { color: var(--muted); }
+    .btnrow { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block; padding: 10px 14px; border-radius: 10px;
+      border: 1px solid var(--border); background: #fff;
+      font-weight: 600;
+    }
+    .btn.primary { border-color: #c7d2fe; background: #eef2ff; }
+    footer { margin-top: 26px; color: var(--muted); font-size: 14px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
 </head>
 <body>
-  <h1>Мир Таро</h1>
+  <div class="wrap">
+    <header>
+      <h1>Мир Таро</h1>
+      <p class="sub">
+        Онлайн-сервис в формате Telegram-бота: безлимитное общение с ботом по вопросам Таро
+        в рамках премиум-подписки.
+      </p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">Открыть Telegram-бота</a>
+        <a class="btn" href="offer.html">Публичная оферта</a>
+        <a class="btn" href="privacy.html">Политика конфиденциальности</a>
+      </div>
+    </header>
 
-  <p>
-    «Мир Таро» — онлайн-сервис в формате Telegram-бота,
-    предоставляющий автоматические консультации и расшифровку раскладов Таро.
-  </p>
+    <section class="grid">
+      <div class="card">
+        <h2>Контактные данные</h2>
+        <p>
+          Поддержка (email): <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a><br />
+          Telegram поддержки: <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a><br />
+          Telegram-бот: <a href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">t.me/mirtaro_help_bot</a>
+        </p>
+        <p class="muted">
+          Для обращений по оплате и возвратам используйте электронную почту поддержки.
+        </p>
+      </div>
 
-  <h2>Информация о продавце</h2>
-  <p>
-    Индивидуальный предприниматель Шамсиев Ринат Альбертович<br>
-    ИНН: 590417211206
-  </p>
+      <div class="card">
+        <h2>Реквизиты</h2>
+        <p>
+          Индивидуальный предприниматель Шамсиев Ринат Альбертович<br />
+          ИНН: <span class="mono">590417211206</span><br />
+          ОГРН/ОГРНИП: <span class="mono">320595800057412</span>
+        </p>
+      </div>
+    </section>
 
-  <h2>Контакты</h2>
-  <p>
-    Email для связи и поддержки:<br>
-    <strong>taro-bot@mail.ru</strong>
-  </p>
+    <section class="card" style="margin-top:12px;">
+      <h2>Описание услуг</h2>
+      <p>
+        Сервис «Мир Таро» предоставляет информационно-консультативные услуги
+        в электронном виде через Telegram-бота.
+      </p>
+      <ul>
+        <li>ответы на вопросы и трактовка карт Таро;</li>
+        <li>расшифровка раскладов Таро по текстовым запросам;</li>
+        <li>анализ изображений раскладов Таро (если предусмотрено функционалом бота).</li>
+      </ul>
+      <p class="muted">
+        Премиум-подписка предоставляет безлимитное общение с ботом в рамках срока действия тарифа.
+        Подробные условия оказания услуг указаны в <a href="offer.html">публичной оферте</a>.
+      </p>
+    </section>
 
-  <h2>Документы</h2>
-  <ul>
-    <li><a href="privacy.html">Политика конфиденциальности</a></li>
-    <li><a href="offer.html">Публичная оферта</a></li>
-  </ul>
+    <section class="card" style="margin-top:12px;">
+      <h2>Стоимость услуг (тарифы)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Тариф</th>
+            <th>Срок действия</th>
+            <th>Стоимость</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Премиум на 30 дней</strong></td>
+            <td>30 дней</td>
+            <td><strong>690 ₽</strong></td>
+            <td>Безлимитное общение с ботом в течение 30 дней</td>
+          </tr>
+          <tr>
+            <td><strong>Премиум на 90 дней</strong></td>
+            <td>90 дней</td>
+            <td><strong>1290 ₽</strong></td>
+            <td>Безлимитное общение с ботом в течение 90 дней</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Оплата производится в безналичной форме. Актуальные условия и состав тарифа
+        отображаются в Telegram-боте перед оплатой.
+      </p>
+    </section>
 
+    <section class="card" style="margin-top:12px;">
+      <h2>Условия предоставления услуг и возврата</h2>
+      <ul>
+        <li>Услуга предоставляется в электронном виде — доступ к Telegram-боту.</li>
+        <li>Премиум-доступ активируется автоматически после подтверждения оплаты.</li>
+        <li>
+          Возврат денежных средств возможен в случаях и порядке, предусмотренных законодательством РФ
+          и <a href="offer.html">публичной офертой</a>.
+        </li>
+        <li>
+          Для оформления обращения по возврату напишите на
+          <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a>
+          с указанием даты и суммы платежа.
+        </li>
+      </ul>
+    </section>
 
+    <section class="card" style="margin-top:12px;">
+      <h2>Документы</h2>
+      <ul>
+        <li><a href="offer.html">Публичная оферта</a></li>
+        <li><a href="privacy.html">Политика конфиденциальности</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>
+        © «Мир Таро». Информационно-консультативный онлайн-сервис.
+      </p>
+    </footer>
+  </div>
 </body>
 </html>
