@@ -67,14 +67,15 @@
     .danger{color:var(--danger); font-weight:600;}
     .small{font-size:13px;}
     footer{margin-top:18px;}
-    code{background:#fff; border:1px solid var(--border); padding:2px 6px; border-radius:8px;}
+    /* 1) Техническую подсказку делаем невидимой */
+    .hidden{display:none !important;}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>Оформление подписки</h1>
-      <div class="muted">Для Telegram-бота «Мир Таро» — автоматические списания (рекуррентные платежи) через Robokassa.</div>
+      <div class="muted">Автоматические списания (рекуррентные платежи) через Robokassa.</div>
     </header>
 
     <div class="grid">
@@ -102,7 +103,7 @@
         <h2 style="font-size:18px; margin:0 0 8px;">Важная информация</h2>
         <ul>
           <li>Платежи списываются автоматически по выбранному тарифу.</li>
-          <li>Отписаться можно в любой момент — процедура отмены простая.</li>
+          <li>Отписаться можно в любой момент (инструкция — на странице отмены подписки).</li>
           <li>После отмены доступ сохраняется до конца уже оплаченного периода.</li>
         </ul>
 
@@ -112,12 +113,11 @@
           <input id="agree" type="checkbox" />
           <label for="agree">
             Я согласен на автоматические списания согласно условиям
-            <a id="offerLink" href="./offer.html" target="_blank" rel="noopener">оферты</a>.
+            <a href="https://matroxxx.github.io/taro-bot/offer.html" target="_blank" rel="noopener">оферты</a>.
             <div class="small muted" style="margin-top:6px;">
-              Также ознакомьтесь:
-              <a href="./privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>,
-              <a href="./terms.html" target="_blank" rel="noopener">Пользовательское соглашение</a>,
-              <a href="./consent.html" target="_blank" rel="noopener">Согласие на обработку ПД</a>.
+              Дополнительно:
+              <a href="https://matroxxx.github.io/taro-bot/privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>,
+              <a href="https://matroxxx.github.io/taro-bot/index.html" target="_blank" rel="noopener">Информация о сервисе</a>.
             </div>
           </label>
         </div>
@@ -125,6 +125,9 @@
         <div class="actions">
           <button id="btnWeek" class="btn-primary" disabled>Оформить 290 ₽ / неделя</button>
           <button id="btnMonth" class="btn-primary" disabled>Оформить 690 ₽ / месяц</button>
+
+          <!-- Если у тебя cancel.html тоже на GitHub Pages — оставь относительную ссылку.
+               Если путь другой, просто поправь. -->
           <a class="btn-ghost" href="./cancel.html" style="display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px;">
             Как отменить подписку
           </a>
@@ -135,23 +138,11 @@
         </div>
       </main>
 
-      <aside class="card">
-        <h2 style="font-size:18px; margin:0 0 8px;">Техническая подсказка (для вас)</h2>
+      <!-- 1) Техническая подсказка скрыта (но оставлена в коде на будущее) -->
+      <aside class="card hidden" aria-hidden="true">
+        <h2 style="font-size:18px; margin:0 0 8px;">Техническая подсказка</h2>
         <div class="muted small">
-          Это статическая страница для GitHub Pages. Кнопки ведут на ваш сервер, где формируется платёж (InvId, подпись, Recurring=true).
-        </div>
-        <div class="hr"></div>
-        <div class="small">
-          Замените в коде ниже домен сервера на свой:
-          <div style="margin-top:8px;">
-            <code id="serverBasePreview">https://YOURDOMAIN</code>
-          </div>
-        </div>
-
-        <div class="hr"></div>
-        <h2 style="font-size:18px; margin:0 0 8px;">Поддержка</h2>
-        <div class="muted small">
-          Если есть вопросы — напишите в Telegram: <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a>
+          Эта секция скрыта. При желании можно включить для себя, убрав класс <code>hidden</code>.
         </div>
       </aside>
     </div>
@@ -163,21 +154,13 @@
 
   <script>
     // === НАСТРОЙКИ ===
-    // Укажи здесь свой сервер (где будет эндпоинт старта подписки).
     // На GitHub Pages секреты не храним — подпись/InvId/Recurring формирует только сервер.
-    const SERVER_BASE = "https://YOURDOMAIN"; // <-- поменяй
-    const START_PATH = "/subscribe/start";     // <-- можешь поменять под себя
-
-    // Для согласования с Robokassa важно:
-    // - чекбокс НЕ отмечен по умолчанию
-    // - текст согласия как требуется
-    // - ссылка на оферту кликабельна
+    const SERVER_BASE = "https://YOURDOMAIN"; // <-- поменяй на домен твоего сервера
+    const START_PATH = "/subscribe/start";     // <-- путь на твоём сервере
 
     const agree = document.getElementById("agree");
     const btnWeek = document.getElementById("btnWeek");
     const btnMonth = document.getElementById("btnMonth");
-    const serverBasePreview = document.getElementById("serverBasePreview");
-    serverBasePreview.textContent = SERVER_BASE;
 
     function setButtonsEnabled(enabled){
       btnWeek.disabled = !enabled;
@@ -191,12 +174,8 @@
     function go(plan){
       if(!agree.checked) return;
 
-      // Можно добавить метки для аналитики (utm, source и т.п.)
-      // Важно: не передавать сумму с фронта как "истину" — сервер сам определяет цену по plan.
       const url = new URL(SERVER_BASE + START_PATH);
       url.searchParams.set("plan", plan);
-
-      // Откуда пришёл пользователь (не обязательно, но полезно)
       url.searchParams.set("from", "github_pages");
 
       window.location.href = url.toString();
