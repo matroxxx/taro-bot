@@ -5,7 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Мир Таро — толкование карт и раскладов Таро в Telegram и MAX</title>
   <meta name="description" content="«Мир Таро» — автоматизированный сервис толкования карт и раскладов Таро в Telegram и MAX. Ответы формирует программа с использованием ИИ. Тарифы, условия оплаты, документы, контакты и реквизиты." />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+:root{
+  --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --link:#2563eb;
+  --card:#f9fafb; --accent:#eef2ff; --accentBorder:#c7d2fe; --warnBg:#fff7ed; --warnBorder:#fdba74;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 64px;}
+header{padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:18px;}
+h1{font-size:30px;line-height:1.2;margin:0 0 10px;}
+h2{font-size:22px;margin:28px 0 10px;}
+h3{font-size:18px;margin:18px 0 8px;}
+p{margin:10px 0;}
+a{color:var(--link);text-decoration:none;overflow-wrap:anywhere;}
+a:hover{text-decoration:underline;}
+.sub{margin:0;color:var(--muted);max-width:850px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:12px 0;}
+.hero{background:linear-gradient(180deg,var(--accent),#fff);border:1px solid var(--accentBorder);border-radius:16px;padding:18px;}
+.note{background:var(--warnBg);border:1px solid var(--warnBorder);border-radius:12px;padding:12px 16px;margin:12px 0;}
+.btnrow{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;}
+.btn{display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:700;}
+.btn.primary{border-color:var(--accentBorder);background:var(--accent);}
+ul,ol{margin:8px 0 12px 22px;padding:0;}
+li{margin:6px 0;}
+.tablewrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;margin-top:8px;}
+th,td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top;}
+th{background:#f3f4f6;}
+.muted{color:var(--muted);}
+.small{font-size:14px;color:var(--muted);}
+nav.docs{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:15px;margin-top:10px;}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;}
+section.clause{margin-top:6px;}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -66,7 +99,7 @@
     <ul>
       <li><strong>Разовый платёж, без автопродления.</strong> Деньги списываются один раз; по окончании срока доступ просто заканчивается, повторных списаний нет.</li>
       <li>Если премиум уже активен, новая покупка продлевает его на срок нового тарифа.</li>
-      <li><strong>Правила допустимого использования премиум-доступа.</strong> Количество вопросов не ограничено тарифом, но для защиты от автоматических запросов действует технический предел — до 1000 текстовых запросов и до 150 фото в сутки. После 50 текстовых запросов или 20 фото за сутки ответы могут приходить с задержкой до 90 секунд.</li>
+      <li><strong>Правила допустимого использования премиум-доступа.</strong> Для защиты от автоматических запросов действует технический предел — до 1000 текстовых запросов и до 150 фото в сутки. После 50 текстовых запросов или 20 фото за сутки ответы могут приходить с задержкой до 90 секунд.</li>
       <li>Сервис может присылать персональные предложения со скидкой и выдавать бонусные дни (например, за приглашение друга или по промокоду). Условия такого предложения показываются в боте до оплаты.</li>
     </ul>
 
@@ -86,7 +119,7 @@
     <h2>Возвраты и поддержка</h2>
     <p>
       От услуги можно отказаться в любой момент. Порядок возврата, сроки и действия при ошибочной или повторной оплате,
-      а также если доступ не включился, описаны на странице <a href="refund.html">«Возвраты и поддержка»</a> и в <a href="offer.html">оферте</a>.
+      а также если доступ не включился, описаны в разделе <a href="offer.html#refund">«Возвраты и поддержка» оферты</a>.
       Напишите на <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a> или в Telegram <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a>.
       Номер карты и CVV для этого не нужны — никогда их не присылайте.
     </p>
@@ -95,10 +128,9 @@
     <ul>
       <li><a href="offer.html">Публичная оферта</a> — условия использования и оплаты</li>
       <li><a href="privacy.html">Политика обработки персональных данных</a></li>
-      <li><a href="refund.html">Возвраты и поддержка</a></li>
-      <li><a href="consent-marketing.html">Согласие на получение рекламных сообщений</a> (необязательно)</li>
+      <li><a href="offer.html#refund">Возвраты и поддержка</a></li>
       <li><a href="cancel.html">Подписки и автосписания</a></li>
-      <li><a href="archive/offer-2026-03-06.html">Архив: оферта, редакция от 06.03.2026</a></li>
+      <li><a href="https://github.com/matroxxx/taro-bot/blob/61e5a0eb5e21b9ab6d021240154f2c8c66216549/offer.html">Архив: оферта, редакция от 06.03.2026</a></li>
     </ul>
 
     <h2>Контакты и реквизиты</h2>
@@ -111,6 +143,8 @@
       Бот в MAX: <a href="https://max.ru/id590417211206_bot" target="_blank" rel="noopener">max.ru/id590417211206_bot</a></p>
       <p class="small">В обращении об оплате укажите дату, сумму, платформу (Telegram или MAX) и номер платежа, если он есть.</p>
     </div>
+
+    <p>Телефон: <a href="tel:+79028362709">+7 (902) 836-27-09</a><br />Почтовый адрес: г. Пермь, Парковый проспект, 45г.</p>
 
     <footer>© «Мир Таро». Автоматизированный сервис толкования карт Таро в формате чат-бота. Цены указаны в рублях; НДС не облагается в связи с применением исполнителем автоматизированной упрощённой системы налогообложения (АУСН).</footer>
   </div>

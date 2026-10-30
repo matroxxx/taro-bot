@@ -5,25 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Подписки и автосписания — Мир Таро</title>
   <meta name="description" content="«Мир Таро» не списывает деньги автоматически. Что делать, если вы увидели незнакомое списание или хотите отказаться от доступа." />
-  <link rel="stylesheet" href="style.css" />
+  <style>
+:root{
+  --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --link:#2563eb;
+  --card:#f9fafb; --accent:#eef2ff; --accentBorder:#c7d2fe; --warnBg:#fff7ed; --warnBorder:#fdba74;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 64px;}
+header{padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:18px;}
+h1{font-size:30px;line-height:1.2;margin:0 0 10px;}
+h2{font-size:22px;margin:28px 0 10px;}
+h3{font-size:18px;margin:18px 0 8px;}
+p{margin:10px 0;}
+a{color:var(--link);text-decoration:none;overflow-wrap:anywhere;}
+a:hover{text-decoration:underline;}
+.sub{margin:0;color:var(--muted);max-width:850px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:12px 0;}
+.hero{background:linear-gradient(180deg,var(--accent),#fff);border:1px solid var(--accentBorder);border-radius:16px;padding:18px;}
+.note{background:var(--warnBg);border:1px solid var(--warnBorder);border-radius:12px;padding:12px 16px;margin:12px 0;}
+.btnrow{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;}
+.btn{display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;font-weight:700;}
+.btn.primary{border-color:var(--accentBorder);background:var(--accent);}
+ul,ol{margin:8px 0 12px 22px;padding:0;}
+li{margin:6px 0;}
+.tablewrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;margin-top:8px;}
+th,td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top;}
+th{background:#f3f4f6;}
+.muted{color:var(--muted);}
+.small{font-size:14px;color:var(--muted);}
+nav.docs{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:15px;margin-top:10px;}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;}
+section.clause{margin-top:6px;}
+</style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>Подписки и автосписания</h1>
-      <nav class="docs"><a href="index.html">О сервисе</a><a href="offer.html">Оферта</a><a href="refund.html">Возвраты и поддержка</a></nav>
+      <nav class="docs"><a href="index.html">О сервисе</a><a href="offer.html">Оферта</a><a href="offer.html#refund">Возвраты и поддержка</a></nav>
     </header>
 
     <div class="card">
-      <p><strong>Отменять нечего:</strong> «Мир Таро» продаёт доступ только разовыми платежами. Автоматических списаний нет, и после окончания оплаченного срока деньги больше не списываются.</p>
+      <p>Оплата доступа разовая. Автоматическое продление и повторные списания не используются. После окончания оплаченного срока доступ заканчивается без нового списания денег.</p>
     </div>
-
-    <h2>Если вы увидели списание, которое не узнаёте</h2>
-    <p>Напишите в поддержку — на <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a> или в Telegram <a href="https://t.me/mirtarohelp" target="_blank" rel="noopener">@mirtarohelp</a>. Укажите дату и сумму списания, последние 4 цифры карты, платформу (Telegram или MAX) и ваш username. Мы проверим платёж и при ошибке вернём деньги.</p>
-    <p class="small">Полный номер карты, CVV и коды из SMS не присылайте — они не нужны.</p>
-
-    <h2>Если хотите отказаться от уже оплаченного доступа</h2>
-    <p>Это можно сделать в любой момент с возвратом денег за неиспользованные дни — см. <a href="refund.html">«Возвраты и поддержка»</a>.</p>
+    <p>По вопросам платежей и возвратов напишите на <a href="mailto:taro-bot@mail.ru">taro-bot@mail.ru</a> или в Telegram <a href="https://t.me/mirtarohelp">@mirtarohelp</a>. Укажите платформу, дату, сумму и номер платежа, если он есть.</p>
+    <p>Отказ от доступа и возврат за неиспользованный период описаны в <a href="offer.html#refund">разделе «Возвраты и поддержка» оферты</a>.</p>
+    <p class="small">Полный номер карты, CVV/CVC, пароли и коды из SMS не присылайте.</p>
 
     <footer>© «Мир Таро». <a href="index.html">На главную</a></footer>
   </div>
