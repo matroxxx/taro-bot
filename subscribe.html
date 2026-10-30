@@ -1,188 +1,35 @@
-<!-- subscribe.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Оформление подписки — Мир Таро</title>
-  <meta name="description" content="Оформление подписки с автоматическими списаниями для Telegram-бота «Мир Таро»." />
-  <style>
-    :root{
-      --bg:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb;
-      --card:#f9fafb; --primary:#2563eb; --danger:#dc2626;
-      --radius:16px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    }
-    .wrap{max-width:920px; margin:0 auto; padding:28px 18px 64px;}
-    header{margin-bottom:18px;}
-    h1{font-size:28px; margin:0 0 8px;}
-    .muted{color:var(--muted);}
-    .grid{display:grid; gap:16px; grid-template-columns: 1.25fr .75fr;}
-    @media (max-width: 860px){.grid{grid-template-columns:1fr;}}
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow: 0 1px 0 rgba(0,0,0,.03);
-    }
-    .plans{display:grid; gap:12px;}
-    .plan{
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      background:#fff;
-    }
-    .plan h2{font-size:18px; margin:0 0 6px;}
-    .price{font-size:24px; font-weight:700; margin:4px 0;}
-    .badge{
-      display:inline-block; font-size:12px; padding:3px 8px; border-radius:999px;
-      border:1px solid var(--border); background:#fff; color:var(--muted);
-      margin-left:8px;
-    }
-    ul{margin:10px 0 0 20px; padding:0;}
-    a{color:var(--primary); text-decoration:none;}
-    a:hover{text-decoration:underline;}
-    .hr{height:1px; background:var(--border); margin:14px 0;}
-    .consent{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px; border:1px solid var(--border); border-radius:14px; background:#fff;
-    }
-    .consent input{margin-top:4px; width:18px; height:18px;}
-    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
-    button{
-      appearance:none; border:0; border-radius:14px;
-      padding:12px 14px; font-weight:700; cursor:pointer;
-    }
-    .btn-primary{background:var(--primary); color:#fff;}
-    .btn-primary:disabled{opacity:.45; cursor:not-allowed;}
-    .btn-ghost{
-      background:#fff; border:1px solid var(--border); color:var(--text);
-    }
-    .note{font-size:14px; color:var(--muted); margin-top:10px;}
-    .danger{color:var(--danger); font-weight:600;}
-    .small{font-size:13px;}
-    footer{margin-top:18px;}
-    /* 1) Техническую подсказку делаем невидимой */
-    .hidden{display:none !important;}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Оплата доступа — Мир Таро</title>
+  <meta name="description" content="«Мир Таро» продаёт доступ разовыми платежами без автопродления. Как оплатить премиум-доступ." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>Оформление подписки</h1>
-      <div class="muted">Автоматические списания (рекуррентные платежи) через Robokassa.</div>
+      <h1>Оплата доступа</h1>
+      <nav class="docs"><a href="index.html">О сервисе</a><a href="offer.html">Оферта</a><a href="refund.html">Возвраты и поддержка</a></nav>
     </header>
 
-    <div class="grid">
-      <main class="card">
-        <div class="plans">
-          <div class="plan">
-            <h2>Подписка на неделю <span class="badge">автосписание</span></h2>
-            <div class="price">390 ₽ / 30 дней</div>
-            <div class="muted">
-              Списание выполняется автоматически каждые 7 дней, начиная с даты первой оплаты.
-            </div>
-          </div>
-
-          <div class="plan">
-            <h2>Подписка на месяц <span class="badge">автосписание</span></h2>
-            <div class="price">2290 ₽ / 360 дней</div>
-            <div class="muted">
-              Списание выполняется автоматически каждые 30 дней, начиная с даты первой оплаты.
-            </div>
-          </div>
-        </div>
-
-        <div class="hr"></div>
-
-        <h2 style="font-size:18px; margin:0 0 8px;">Важная информация</h2>
-        <ul>
-          <li>Платежи списываются автоматически по выбранному тарифу.</li>
-          <li>Отписаться можно в любой момент (инструкция — на странице отмены подписки).</li>
-          <li>После отмены доступ сохраняется до конца уже оплаченного периода.</li>
-        </ul>
-
-        <div class="hr"></div>
-
-        <div class="consent">
-          <input id="agree" type="checkbox" />
-          <label for="agree">
-            Я согласен на автоматические списания согласно условиям
-            <a href="https://matroxxx.github.io/taro-bot/offer.html" target="_blank" rel="noopener">оферты</a>.
-            <div class="small muted" style="margin-top:6px;">
-              Дополнительно:
-              <a href="https://matroxxx.github.io/taro-bot/privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>,
-              <a href="https://matroxxx.github.io/taro-bot/index.html" target="_blank" rel="noopener">Информация о сервисе</a>.
-            </div>
-          </label>
-        </div>
-
-        <div class="actions">
-          <button id="btnWeek" class="btn-primary" disabled>Оформить 390 ₽ / месяц</button>
-          <button id="btnMonth" class="btn-primary" disabled>Оформить 2290 ₽ / год</button>
-
-          <!-- Если у тебя cancel.html тоже на GitHub Pages — оставь относительную ссылку.
-               Если путь другой, просто поправь. -->
-          <a class="btn-ghost" href="./cancel.html" style="display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px;">
-            Как отменить подписку
-          </a>
-        </div>
-
-        <div class="note">
-          <span class="danger">Важно:</span> чекбокс не проставлен по умолчанию. Нажимая «Оформить», вы подтверждаете согласие на автосписания.
-        </div>
-      </main>
-
-      <!-- 1) Техническая подсказка скрыта (но оставлена в коде на будущее) -->
-      <aside class="card hidden" aria-hidden="true">
-        <h2 style="font-size:18px; margin:0 0 8px;">Техническая подсказка</h2>
-        <div class="muted small">
-          Эта секция скрыта. При желании можно включить для себя, убрав класс <code>hidden</code>.
-        </div>
-      </aside>
+    <div class="note">
+      Подписки с автоматическими списаниями «Мир Таро» не оформляет. На этой странице раньше размещалась форма
+      оформления такой подписки; через неё не прошло ни одного платежа, и она отключена.
     </div>
 
-    <footer class="muted small">
-      © «Мир Таро»
-    </footer>
+    <p>Премиум-доступ оплачивается в боте разовым платежом без автопродления:</p>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Тариф</th><th>Срок</th><th>Стоимость</th></tr>
+        <tr><td>Премиум на 7 дней</td><td>7 дней</td><td>390 ₽</td></tr>
+        <tr><td>Премиум на 30 дней</td><td>30 дней</td><td>990 ₽</td></tr>
+      </table>
+    </div>
+    <p>Откройте бота в <a href="https://t.me/mirtaro_help_bot" target="_blank" rel="noopener">Telegram</a> или в <a href="https://max.ru/id590417211206_bot" target="_blank" rel="noopener">MAX</a>, нажмите «💎 Премиум» или отправьте <code>/buy</code>. Доступ действует в том боте, где оплачен. Условия — в <a href="offer.html">оферте</a>.</p>
+
+    <footer>© «Мир Таро». <a href="index.html">На главную</a></footer>
   </div>
-
-  <script>
-    // === НАСТРОЙКИ ===
-    // На GitHub Pages секреты не храним — подпись/InvId/Recurring формирует только сервер.
-    const SERVER_BASE = "https://YOURDOMAIN"; // <-- поменяй на домен твоего сервера
-    const START_PATH = "/subscribe/start";     // <-- путь на твоём сервере
-
-    const agree = document.getElementById("agree");
-    const btnWeek = document.getElementById("btnWeek");
-    const btnMonth = document.getElementById("btnMonth");
-
-    function setButtonsEnabled(enabled){
-      btnWeek.disabled = !enabled;
-      btnMonth.disabled = !enabled;
-    }
-
-    agree.addEventListener("change", () => {
-      setButtonsEnabled(agree.checked);
-    });
-
-    function go(plan){
-      if(!agree.checked) return;
-
-      const url = new URL(SERVER_BASE + START_PATH);
-      url.searchParams.set("plan", plan);
-      url.searchParams.set("from", "github_pages");
-
-      window.location.href = url.toString();
-    }
-
-    btnWeek.addEventListener("click", () => go("week_recurring_290"));
-    btnMonth.addEventListener("click", () => go("month_recurring_690"));
-  </script>
 </body>
 </html>
